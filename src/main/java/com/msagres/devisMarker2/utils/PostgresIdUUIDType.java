@@ -1,4 +1,5 @@
 package com.msagres.devisMarker2.utils;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List Quotations</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container text-center pt-2">
+    <h1>Quotations List</h1>
+    <div>
+        <table class="table table-bordered">
+            <thead class="table-dark">
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Client
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="client : ${clientList}">
+                <tr>
+                    <td>
+                        [[${client.id}]]
+                    </td>
+                    <td>
+                        [[${client.name}]]
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

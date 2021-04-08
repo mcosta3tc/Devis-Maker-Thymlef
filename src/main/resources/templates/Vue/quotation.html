@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="container text-center pt-2">
-    <h1>Quotations List</h1>
+    <h1>Quotation List</h1>
     <div>
         <table class="table table-bordered">
             <thead class="table-dark">
@@ -16,7 +16,16 @@
                     ID
                 </th>
                 <th>
+                    Product
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
                     Client
+                </th>
+                <th>
+                    Modify
                 </th>
             </tr>
             </thead>
@@ -27,7 +36,21 @@
                         [[${quotation.id}]]
                     </td>
                     <td>
-                        [[${quotation.client}]]
+                        [[${quotation.product}]]
+                    </td>
+                    <td>
+                        [[${quotation.price}]] €
+                    </td>
+                    <td>
+                        [[${quotation.client.name}]]
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" th:href="@{'/quotation/edit/' + ${quotation.id}}">
+                            Edit
+                        </a>
+                        <a class="btn btn-danger" th:href="@{'/quotation/delete/' + ${quotation.id}}">
+                            Delete
+                        </a>
                     </td>
                 </tr>
             </th:block>

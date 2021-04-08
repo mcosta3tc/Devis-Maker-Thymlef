@@ -2,29 +2,54 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create New Quotation</title>
+    <title>Create New quotation</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 </head>
 <body>
 <div class="container text-center">
-    <div>
-        <h1>Create new Quotation</h1>
+    <div th:if="${quotation.id == null}">
+        <h1>Create new quotation</h1>
+    </div>
+    <div th:unless="${quotation.id == null}">
+        <h1>Edit quotation</h1>
     </div>
     <form th:action="@{/quotation/save}" th:object="${quotation}" method="post"
           style="max-width: 600px; margin: 0 auto;">
+        <input type="hidden" th:field="*{id}" th:value="${quotation.id}">
         <div class="m-3">
             <div class="form-group row">
-                <label class="col-form-label col-sm-4">Quotation Client: </label>
+                <label class="col-form-label col-sm-4">Product: </label>
                 <div class="col-sm-8">
-                    <input type="text" th:field="*{client}" class="form-control" required>
+                    <input type="text" th:field="*{product}" class="form-control" required>
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Price: </label>
+                <div class="col-sm-8">
+                    <input type="number" step="0.1" th:field="*{price}" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Client: </label>
+                <div class="col-sm-8">
+                    <select th:field="*{client}" class="form-control" required>
+                        <th:block th:each="client : ${clientList}">
+                            <option th:text="${client.name}" th:value="${client.id}">
+                            </option>
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+
+            <div class="text-center p-3">
+                <button type="submit" class="btn btn-primary">
+                    Save
+                </button>
+            </div>
         </div>
-        <div class="text-center p-3">
-            <button type="submit" class="btn btn-primary">
-                Save
-            </button>
-        </div>
+
     </form>
 </div>
 </body>
